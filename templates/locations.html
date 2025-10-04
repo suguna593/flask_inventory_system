@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Locations</title>
+</head>
+<body>
+<h1>Locations Page</h1>
+<nav>
+    <a href="/">Home</a> | 
+    <a href="/products">Products</a> | 
+    <a href="/locations">Locations</a> | 
+    <a href="/movements">Movements</a>
+</nav>
+<hr>
+<h2>List of Locations</h2>
+<ul>
+  {% for l in locations %}
+    <li>{{ l.name }}</li>
+  {% endfor %}
+</ul>
+</body>
+</html>
+

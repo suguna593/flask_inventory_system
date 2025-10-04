@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+</head>
+<body>
+<h1>Products Page</h1>
+<nav>
+    <a href="/">Home</a> | 
+    <a href="/products">Products</a> | 
+    <a href="/locations">Locations</a> | 
+    <a href="/movements">Movements</a>
+</nav>
+<hr>
+
+<h2>List of Products</h2>
+
+{% if products %}
+    <ul>
+    {% for p in products %}
+        <li>{{ p.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products found.</p>
+{% endif %}
+
+</body>
+</html>

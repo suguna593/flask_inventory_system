@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movements</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        nav a { margin-right: 15px; text-decoration: none; color: #007BFF; }
+        nav a:hover { text-decoration: underline; }
+        hr { margin: 10px 0 20px 0; }
+        form label { display: inline-block; width: 100px; font-weight: bold; }
+        form input, form select { width: 200px; margin-bottom: 10px; padding: 5px; }
+        button { padding: 5px 15px; font-size: 14px; cursor: pointer; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        table, th, td { border: 1px solid #333; }
+        th, td { padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+<h1>Inventory Management System</h1>
+<nav>
+    <a href="/">Home</a> | 
+    <a href="/products">Products</a> | 
+    <a href="/locations">Locations</a> | 
+    <a href="/movements">Movements</a>
+</nav>
+<hr>
+
+<h2>Record Movement</h2>
+<form method="POST">
+    <label>Product:</label>
+    <select name="product" required>
+        {% for p in products %}
+            <option value="{{ p.id }}">{{ p.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>From:</label>
+    <select name="from_location">
+        <option value="">—</option>
+        {% for l in locations %}
+            <option value="{{ l.name }}">{{ l.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>To:</label>
+    <select name="to_location" required>
+        {% for l in locations %}
+            <option value="{{ l.name }}">{{ l.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Quantity:</label>
+    <input type="number" name="quantity" min="1" required><br>
+
+    <button type="submit">Move</button>
+</form>
+
+<h2>Movement History</h2>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Quantity</th>
+        <th>Date</th>
+    </tr>
+    {% for m in movements %}
+    <tr>
+        <td>{{ m.product.name }}</td>
+        <td>{{ m.from_location or "—" }}</td>
+        <td>{{ m.to_location }}</td>
+        <td>{{ m.quantity }}</td>
+        <td>{{ m.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
+

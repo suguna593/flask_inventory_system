@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Balance</title>
+    <style>
+        table { border-collapse: collapse; width: 50%; margin-top: 20px; }
+        table, th, td { border: 1px solid #333; }
+        th, td { padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <h1>Product Balance per Warehouse</h1>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Warehouse</th>
+            <th>Qty</th>
+        </tr>
+        {% for b in balance %}
+        <tr>
+            <td>{{ b.product }}</td>
+            <td>{{ b.location }}</td>
+            <td>{{ b.quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
